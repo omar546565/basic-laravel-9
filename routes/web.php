@@ -34,6 +34,9 @@ Route::get('/contact',[ContactController::class,'index'])->middleware('age');
 //Category Controller
 Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all.category');
 Route::get('/category/edit/{id}',[CategoryController::class,'EditCategory'])->name('Edit.category');
+Route::get('/softdelete/category/{id}',[CategoryController::class,'SoftDelete'])->name('Soft.Delete');
+Route::get('/category/restore/{id}',[CategoryController::class,'SoftRestore'])->name('Soft.Restore');
+Route::get('/category/delete/{id}',[CategoryController::class,'pCategoryDelete'])->name('p.Delete');
 Route::post('/category/add',[CategoryController::class,'AddCategory'])->name('store.category');
 Route::post('/category/update/{id}',[CategoryController::class,'UpdateCategory'])->name('update.category');
 
