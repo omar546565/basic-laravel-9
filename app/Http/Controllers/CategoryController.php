@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 class CategoryController extends Controller
 {
     public function AllCategory(){
-        $categories=Category::latest()->paginate(5);
-        $trashCat=Category::onlyTrashed()->latest()->paginate(3);
+        $categories=Category::latest()->paginate(10);
+        $trashCat=Category::onlyTrashed()->latest()->paginate(10);
 
        /* $categories=DB::table('categories')
             ->join('users','categories.user_id','users.id')
@@ -92,14 +92,14 @@ class CategoryController extends Controller
     public function SoftDelete($id){
         $delete=Category::find($id)->delete();
 
-        return Redirect()->back()->with('success','تم الحذف بنجاح');
+        return Redirect()->back()->with('Soft','تم النقل لسلة المحذوفات  بنجاح');
     }
     public function SoftRestore($id){
         $delete=Category::withTrashed()->find($id)->restore();
 
-        return Redirect()->back()->with('success','تم الاستعادة بنجاح');
+        return Redirect()->back()->with('restore','تم الاستعادة بنجاح');
     }
-    public function pCategoryDelete($id){
+    public function forceDelete($id){
         $delete=Category::onlyTrashed()->find($id)->forceDelete();
 
         return Redirect()->back()->with('delete','تم الحذف بنجاح');
