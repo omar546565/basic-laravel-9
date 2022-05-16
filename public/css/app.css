@@ -988,6 +988,10 @@ select {
 .relative {
   position: relative;
 }
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
 .inset-0 {
   top: 0px;
   right: 0px;
@@ -1018,6 +1022,10 @@ select {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1094,6 +1102,9 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
+.mt-auto {
+  margin-top: auto;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -1112,8 +1123,8 @@ select {
 .mb-0 {
   margin-bottom: 0px;
 }
-.mt-auto {
-  margin-top: auto;
+.mr-auto {
+  margin-right: auto;
 }
 .block {
   display: block;
@@ -1487,6 +1498,9 @@ select {
 .p-4 {
   padding: 1rem;
 }
+.p-5 {
+  padding: 1.25rem;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1595,6 +1609,12 @@ select {
 }
 .pr-3 {
   padding-right: 0.75rem;
+}
+.pl-0 {
+  padding-left: 0px;
+}
+.pt-3 {
+  padding-top: 0.75rem;
 }
 .text-left {
   text-align: left;

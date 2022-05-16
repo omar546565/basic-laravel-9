@@ -21,7 +21,7 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('/home', function () {
     return view('home');
@@ -57,6 +57,7 @@ Route::get('/multi/forcedelete/{id}',[BrandController::class,'forceDeleteMultipi
 Route::post('/store/images',[BrandController::class,'StoreImages'])->name('store.images');
 
 
+Route::get('/user/logout',[ContactController::class,'UserLogout'])->name('user.logout');
 
 Route::middleware([
     'auth:sanctum',
