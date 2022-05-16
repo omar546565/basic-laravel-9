@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Multipic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function AllBrand(){
         $brands=Brand::latest()->paginate(10);
 
@@ -107,4 +112,38 @@ class BrandController extends Controller
             $delete->forceDelete();
         return Redirect()->back()->with('delete','تم الحذف بنجاح');
     }
+
+
+    //// multi image
+    public function Multipic(){
+        $images=Multipic::latest()->paginate(10);
+        return view('admin.multipic.index',compact('images'));
+    }
+    public function StoreImages(Request $request){
+
+
+        $image = $request->file('image');
+        foreach ($image as $multi_img){
+            //رفع الصور بالطريقة مع قصها//
+            $name_gen = hexdec(uniqid()).'.'.$multi_img->getClientOriginalExtension();
+            Image::make($multi_img)->resize(300,200)->save('image/multi/'.$name_gen);
+            $last_img = 'image/multi/'.$name_gen;
+
+            //insert1
+            Multipic::create([
+                'image' => $last_img,
+            ]);
+        }
+
+
+
+        return Redirect()->back()->with('success','تم الإدخال بنجاح');
+    }
+    public function forceDeleteMultipic($id){
+        $delete=Multipic::find($id);
+        unlink($delete->image);
+        $delete->forceDelete();
+        return Redirect()->back()->with('delete','تم الحذف بنجاح');
+    }
+
 }

@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -49,6 +51,13 @@ Route::get('/brand/edit/{id}',[BrandController::class,'EditBrand'])->name('Edit.
 Route::post('/brand/update/{id}',[BrandController::class,'UpdateBrand'])->name('update.brand');
 Route::get('/brand/forcedelete/{id}',[BrandController::class,'forceDelete'])->name('brand.Delete');
 
+//multi image Controller
+Route::get('/multi/image',[BrandController::class,'Multipic'])->name('multi.image');
+Route::get('/multi/forcedelete/{id}',[BrandController::class,'forceDeleteMultipic'])->name('multi.forceDelete');
+Route::post('/store/images',[BrandController::class,'StoreImages'])->name('store.images');
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -56,7 +65,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
       /*  $users = User::all();*/
-        $users = DB::table('users')->get();
-        return view('dashboard',compact('users'));
+      /*  $users = DB::table('users')->get();*/
+        return view('admin.index');
     })->name('dashboard');
 });
