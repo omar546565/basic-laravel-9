@@ -78,17 +78,17 @@ class BrandController extends Controller
         $brand_image = $request->file('brand_image');
         if ($brand_image){
             //رفع الصور بالطريقة العادية//
-            /*$name_gen = hexdec(uniqid());
+            $name_gen = hexdec(uniqid());
             $img_ext = strtolower($brand_image->getClientOriginalExtension());
             $img_name = $name_gen.'.'.$img_ext;
             $up_location = 'image/brand/';
             $last_img = $up_location.$img_name;
-            $brand_image->move($up_location,$img_name);*/
+            $brand_image->move($up_location,$img_name);
 
             //رفع الصور بالطريقة مع قصها//
-            $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+           /* $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
             Image::make($brand_image)->resize(300,200)->save('image/brand/'.$name_gen);
-            $last_img = 'image/brand/'.$name_gen;
+            $last_img = 'image/brand/'.$name_gen;*/
 
 
             unlink($old_image);

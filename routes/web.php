@@ -21,7 +21,10 @@ Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 Route::get('/', function () {
-    return view('home');
+
+    $brands=\App\Models\Brand::get();
+
+    return view('home',compact('brands'));
 });
 Route::get('/home', function () {
     return view('home');
