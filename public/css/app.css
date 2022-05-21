@@ -1099,11 +1099,11 @@ select {
 .mb-5 {
   margin-bottom: 1.25rem;
 }
-.mr-auto {
-  margin-right: auto;
-}
 .mb-3 {
   margin-bottom: 0.75rem;
+}
+.mr-auto {
+  margin-right: auto;
 }
 .-mt-px {
   margin-top: -1px;

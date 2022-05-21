@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -53,6 +54,12 @@ Route::post('/brand/add',[BrandController::class,'StoreBrand'])->name('store.bra
 Route::get('/brand/edit/{id}',[BrandController::class,'EditBrand'])->name('Edit.Brand');
 Route::post('/brand/update/{id}',[BrandController::class,'UpdateBrand'])->name('update.brand');
 Route::get('/brand/forcedelete/{id}',[BrandController::class,'forceDelete'])->name('brand.Delete');
+
+//Slider Controller
+Route::get('/home/slider',[HomeController::class,'homeSlider'])->name('home.slider');
+Route::post('/slider/add',[HomeController::class,'StoreSlider'])->name('store.slider');
+Route::get('/slider/edit/{id}',[HomeController::class,'Editslider'])->name('Edit.slider');
+Route::post('/slider/update/{id}',[HomeController::class,'UpdateSlider'])->name('update.slider');
 
 //multi image Controller
 Route::get('/multi/image',[BrandController::class,'Multipic'])->name('multi.image');
