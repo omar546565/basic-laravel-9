@@ -5,7 +5,11 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use App\Models\User;
+use App\Models\Brand;
+use App\Models\HomeAbout;
+use App\Models\Multipic;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -23,9 +27,12 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 Route::get('/', function () {
 
-    $brands=\App\Models\Brand::get();
+    $brands=Brand::get();
+    $home_abouts=HomeAbout::first();
+    $images = Multipic::all();
 
-    return view('home',compact('brands'));
+    return view('home',compact('brands','home_abouts','images'));
+
 });
 Route::get('/home', function () {
     return view('home');
@@ -60,6 +67,15 @@ Route::get('/home/slider',[HomeController::class,'homeSlider'])->name('home.slid
 Route::post('/slider/add',[HomeController::class,'StoreSlider'])->name('store.slider');
 Route::get('/slider/edit/{id}',[HomeController::class,'Editslider'])->name('Edit.slider');
 Route::post('/slider/update/{id}',[HomeController::class,'UpdateSlider'])->name('update.slider');
+Route::get('/slider/forcedelete/{id}',[HomeController::class,'forceDelete'])->name('forcedelete.slider');
+
+//About Controller
+Route::get('/home/about',[AboutController::class,'homeAbout'])->name('home.about');
+Route::post('/about/add',[AboutController::class,'StoreAbout'])->name('store.about');
+Route::get('/about/edit/{id}',[AboutController::class,'EditAbout'])->name('Edit.about');
+Route::post('/about/update/{id}',[AboutController::class,'UpdateAbout'])->name('update.about');
+Route::get('/about/forcedelete/{id}',[AboutController::class,'forceDelete'])->name('forcedelete.about');
+
 
 //multi image Controller
 Route::get('/multi/image',[BrandController::class,'Multipic'])->name('multi.image');

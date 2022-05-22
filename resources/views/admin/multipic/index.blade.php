@@ -1,17 +1,45 @@
-             <x-app-layout>
-                <x-slot name="header">
-                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                        multi image <b> </b>
-                        <b style="float:right" >
-                            Total
-                            <span class="badge bg-danger" >{{count($images)}}</span>
-                        </b>
-                    </h2>
-                </x-slot>
+@extends('admin.admin_master')
+@section('admin')
 
                 <div class="py-12">
 
                                  <div class="row">
+                                     <div class="col-md-4">
+                                         <div class="card" >
+
+                                             <div class="card-header" >
+                                                 add multi
+                                             </div>
+                                             <div class="card-body">
+                                                 <form action="{{route('store.images')}}" method="POST" enctype="multipart/form-data">
+                                                     @csrf
+
+                                                     <div class="mb-3">
+                                                         <label for="Inputmultiimage" class="form-label">multi image</label>
+                                                         <input type="file" name="image[]" class="form-control" id="Inputmultiimage" multiple="" aria-describedby="multiHelp">
+                                                         @error('image')
+                                                         <span class="text-danger">{{$message}}</span>
+                                                         @enderror
+                                                     </div>
+                                                     <div class="mb-3">
+                                                         <label for="Inputmultiimage" class="form-label">type image</label>
+                                                            <select  class="form-control" name="type" required>
+                                                                <option value=""></option>
+                                                                <option value="web">web</option>
+                                                                <option value="app">app</option>
+                                                                <option value="card">card</option>
+                                                            </select>
+                                                            @error('type')
+                                                         <span class="text-danger">{{$message}}</span>
+                                                         @enderror
+                                                     </div>
+
+                                                     <button type="submit" class="btn btn-primary" style="background: #2168c9">add multi</button>
+                                                 </form>
+                                             </div>
+
+                                         </div>
+                                     </div>
                                     <div class="col-md-8">
                                         <div class="card" >
                                             @if(session('success'))
@@ -46,42 +74,15 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="card" >
 
-                                            <div class="card-header" >
-                                                add multi
-                                            </div>
-                                            <div class="card-body">
-                                                <form action="{{route('store.images')}}" method="POST" enctype="multipart/form-data">
-                                                    @csrf
-
-                                                     <div class="mb-3">
-                                                        <label for="Inputmultiimage" class="form-label">multi image</label>
-                                                        <input type="file" name="image[]" class="form-control" id="Inputmultiimage" multiple="" aria-describedby="multiHelp">
-                                                        @error('image')
-                                                        <span class="text-danger">{{$message}}</span>
-                                                        @enderror
-                                                    </div>
-
-                                                    <button type="submit" class="btn btn-primary" style="background: #2168c9">add multi</button>
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
 
 
 
-                    </div>
-
-
-
                 </div>
-            </x-app-layout>
 
 
+@endsection
 
 
 

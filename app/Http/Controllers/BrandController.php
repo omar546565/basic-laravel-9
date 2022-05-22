@@ -132,6 +132,7 @@ class BrandController extends Controller
             //insert1
             Multipic::create([
                 'image' => $last_img,
+                'type' => $request->type,
             ]);
         }
 

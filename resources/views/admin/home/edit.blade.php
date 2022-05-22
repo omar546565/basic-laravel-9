@@ -1,51 +1,57 @@
 @extends('admin.admin_master')
 @section('admin')
+
                 <div class="py-12">
                     <div class="container" >
                         <div class="row">
+
                             <div class="col-md-12">
                                 <div class="card" >
+
                                     <div class="card-header" >
-                                        Edit slider
+                                        Edit about
                                     </div>
                                     <div class="card-body">
-                                        <form action="{{url('slider/update/'.$sliders->id)}}" method="POST"  enctype="multipart/form-data">
+
+                                        <form action="{{url('about/update/'.$abouts->id)}}" method="POST"  enctype="multipart/form-data">
                                             @csrf
-                                            <input hidden type="text" name="old_image" value="{{$sliders->image}}" class="form-control"    >
+
 
                                             <div class="mb-3">
                                                 <label for="exampleInputbrand" class="form-label">title</label>
-                                                <input type="text" name="title" value="{{$sliders->title}}" class="form-control"  aria-describedby="CategoryHelp">
+                                                <input type="text" name="title" value="{{$abouts->title}}" class="form-control"  aria-describedby="CategoryHelp">
                                                 @error('title')
                                                 <span class="text-danger">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputbrand" class="form-label">description</label>
-                                                <textarea   name="description" class="form-control" style="height: 150px" aria-describedby="CategoryHelp">{{$sliders->description}}</textarea>
-                                                @error('description')
+                                                <label  class="form-label">short_dis</label>
+                                                <textarea   name="long_dis" class="form-control"    aria-describedby="BrandHelp">{{$abouts->short_dis}}</textarea>
+                                                @error('short_dis')
                                                 <span class="text-danger">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputbrandimage" class="form-label">image</label>
-                                                <input type="file" name="image" value="{{$sliders->image}}" class="form-control"   aria-describedby="CategoryHelp">
-                                                @error('image')
+                                                <label  class="form-label">long_dis</label>
+                                                <textarea   name="long_dis" class="form-control"    aria-describedby="BrandHelp">{{$abouts->long_dis}}</textarea>
+                                                @error('long_dis')
                                                 <span class="text-danger">{{$message}}</span>
                                                 @enderror
                                             </div>
+
+
                                             <div class="mb-3">
-                                                <img src="{{asset($sliders->image)}}" width="200" alt="{{$sliders->title}}">
+                                                <button type="submit" class="btn btn-success" style="background: #2168c9">update about</button>
                                             </div>
-                                            <div class="mb-3">
-                                                <button type="submit" class="btn btn-success" style="background: #2168c9">update slider</button>
-                                            </div>
+
                                         </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 @endsection
 

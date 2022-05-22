@@ -55,7 +55,7 @@ class HomeController extends Controller
 
     public function UpdateSlider(Request $request,$id){
         $validated = $request->validate([
-            'brand_name' => 'required|min:4',
+            'title' => 'required|min:4',
         ],
             [
                 'title' => 'required|min:4',
@@ -71,21 +71,21 @@ class HomeController extends Controller
             $name_gen = hexdec(uniqid());
             $img_ext = strtolower($image->getClientOriginalExtension());
             $img_name = $name_gen.'.'.$img_ext;
-            $up_location = 'image/brand/';
+            $up_location = 'image/slider/';
             $last_img = $up_location.$img_name;
             $image->move($up_location,$img_name);
 
             //رفع الصور بالطريقة مع قصها//
             /* $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
-             Image::make($brand_image)->resize(300,200)->save('image/brand/'.$name_gen);
-             $last_img = 'image/brand/'.$name_gen;*/
+             Image::make($brand_image)->resize(300,200)->save('image/slider/'.$name_gen);
+             $last_img = 'image/slider/'.$name_gen;*/
 
 
             unlink($old_image);
         }else{
             $last_img = $old_image;
         }
- $request->all();
+
 
 //insert1
         Slider::find($id)->update([
@@ -96,5 +96,11 @@ class HomeController extends Controller
 
 
         return Redirect()->back()->with('success','تم التعديل بنجاح');
+    }
+    public function forceDelete($id){
+        $delete= Slider::find($id);
+        unlink($delete->image);
+        $delete->forceDelete();
+        return Redirect()->back()->with('delete','تم الحذف بنجاح');
     }
 }
